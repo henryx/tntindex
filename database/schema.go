@@ -7,10 +7,24 @@
 
 package database
 
+import "log"
+
 func (d *DB) checkSchema() bool {
-	return true
+	var counted int
+
+	query := "SELECT count(*) FROM sqlite_master"
+
+	if err := d.conn.QueryRow(query).Scan(&counted); err != nil {
+		log.Fatalln("Database not opened: " + err.Error())
+	}
+
+	if counted > 0 {
+		return true
+	}
+
+	return false
 }
 
 func (d *DB) createSchema() {
-
+	// TODO create schema
 }
