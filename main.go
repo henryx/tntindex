@@ -23,6 +23,7 @@ func main() {
 	indexFile := cmdIndex.Arg("filename", "Filename to index").Required().String()
 
 	db.Open("tntindex.db")
+	defer db.Close()
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
