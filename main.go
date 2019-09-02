@@ -8,7 +8,7 @@
 package main
 
 import (
-	"fmt"
+	"tntindex/index"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )
@@ -20,6 +20,6 @@ func main() {
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
-		fmt.Println("you have passed", *indexFile, "file")
+		index.Index(indexFile)
 	}
 }
