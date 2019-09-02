@@ -27,3 +27,7 @@ func (d *DB) Open(name string) error {
 	}
 	return nil
 }
+
+func (d *DB) Close() {
+	d.conn.Close()
+}
