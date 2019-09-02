@@ -26,5 +26,15 @@ func (d *DB) checkSchema() bool {
 }
 
 func (d *DB) createSchema() {
-	// TODO create schema
+	var tables = []string{
+		"CREATE TABLE categories(id, name)",
+		"CREATE VIRTUAL TABLE posts USING fts5(posted, topic, post, author, title, description)",
+		"CREATE TABLE hashes (topic, post, hash, size, category)",
+	}
+
+	tx, _ := d.conn.Begin()
+	for _, table := range tables {
+		tx.Exec(table)
+	}
+	tx.Commit()
 }
