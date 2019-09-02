@@ -10,13 +10,13 @@ package index
 import "time"
 
 type data struct {
-	Date     time.Time `csv:"data"`
-	Hash     string    `csv:"hash"`
-	Topic    int       `csv:"topic"`
-	Post     int       `csv:"post"`
-	Author   string    `csv:"autore"`
-	Title    string    `csv:"titolo"`
-	Desc     string    `csv:"descrizione"`
-	Size     int       `csv:"dimensione"`
-	Category int       `csv:"categoria"`
+	Date     time.Time `csv:"DATA"`
+	Hash     string    `csv:"HASH"`
+	Topic    int       `csv:"TOPIC"`
+	Post     int       `csv:"POST"`
+	Author   string    `csv:"AUTORE"`
+	Title    string    `csv:"TITOLO"`
+	Desc     string    `csv:"DESCRIZIONE"`
+	Size     int       `csv:"DIMENSIONE"`
+	Category int       `csv:"CATEGORIA"`
 }
