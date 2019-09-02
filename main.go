@@ -8,6 +8,7 @@
 package main
 
 import (
+	"log"
 	"tntindex/index"
 
 	"gopkg.in/alecthomas/kingpin.v2"
@@ -20,6 +21,8 @@ func main() {
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
-		index.Index(indexFile)
+		if err := index.Index(indexFile); err != nil {
+			log.Fatalln("Error when indexing data:", err)
+		}
 	}
 }
