@@ -7,11 +7,38 @@
 
 package index
 
-import "fmt"
+import (
+	"bufio"
+	"encoding/csv"
+	"io"
+	"os"
+
+	"github.com/jszwec/csvutil"
+)
 
 // Index index a file in database
 func Index(filename *string) error {
-	fmt.Println("you have passed", *filename, "file")
+	var rows []data
+
+	fd, err := os.Open(*filename)
+	if err != nil {
+		return err
+	}
+	defer fd.Close()
+
+	reader := csv.NewReader(bufio.NewReader(fd))
+	dec, err := csvutil.NewDecoder(reader)
+	for {
+		d := data{}
+
+		if err := dec.Decode(&d); err == io.EOF {
+			break
+		} else if err != nil {
+			return err
+		}
+
+		rows = append(rows, d)
+	}
 
 	return nil
 }
