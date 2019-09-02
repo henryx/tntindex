@@ -9,15 +9,20 @@ package main
 
 import (
 	"log"
+	"tntindex/database"
 	"tntindex/index"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 func main() {
+	var db database.DB
+
 	// Index command
 	cmdIndex := kingpin.Command("index", "Index a file")
 	indexFile := cmdIndex.Arg("filename", "Filename to index").Required().String()
+
+	db.Open("tntindex.db")
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
