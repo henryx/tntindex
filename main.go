@@ -16,7 +16,7 @@ import (
 func main() {
 	// Index command
 	cmdIndex := kingpin.Command("index", "Index a file")
-	indexFile := cmdIndex.Arg("filename", "Filename to index").String()
+	indexFile := cmdIndex.Arg("filename", "Filename to index").Required().String()
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
