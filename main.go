@@ -9,8 +9,17 @@ package main
 
 import (
 	"fmt"
+
+	"gopkg.in/alecthomas/kingpin.v2"
 )
 
-func main()  {
-	fmt.Println("Hello world!")
+func main() {
+	// Index command
+	cmdIndex := kingpin.Command("index", "Index a file")
+	indexFile := cmdIndex.Arg("filename", "Filename to index").String()
+
+	switch kingpin.Parse() {
+	case cmdIndex.FullCommand():
+		fmt.Println("you have passed", *indexFile, "file")
+	}
 }
