@@ -25,6 +25,11 @@ func (d *DB) Open(name string) error {
 	if err != nil {
 		return err
 	}
+
+	if !d.checkSchema() {
+		d.createSchema()
+	}
+
 	return nil
 }
 
