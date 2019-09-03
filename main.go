@@ -11,6 +11,7 @@ import (
 	"log"
 	"tntindex/database"
 	"tntindex/index"
+	"tntindex/search"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )
@@ -24,6 +25,7 @@ func main() {
 
 	// Search command
 	cmdSearch := kingpin.Command("search", "Search a torrent")
+	term := cmdSearch.Arg("term", "Term to search").Required().String()
 
 	kingpin.HelpFlag.Short('h')
 
