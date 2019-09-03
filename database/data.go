@@ -27,3 +27,11 @@ func (d *DB) IndexData(val *data.Data) error {
 
 	return nil
 }
+
+func (d *DB) SearchPost(val string) (error) {
+   return nil
+}
+
+func SearchHash(topic, post int) (error) {
+   return nil
+}
