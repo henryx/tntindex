@@ -12,12 +12,13 @@ import (
 	"encoding/csv"
 	"io"
 	"os"
+	"tntindex/database"
 
 	"github.com/jszwec/csvutil"
 )
 
 // Index index a file in database
-func Index(filename *string) error {
+func Index(db *database.DB, filename *string) error {
 	var rows []data
 
 	fd, err := os.Open(*filename)

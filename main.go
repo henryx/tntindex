@@ -27,7 +27,7 @@ func main() {
 
 	switch kingpin.Parse() {
 	case cmdIndex.FullCommand():
-		if err := index.Index(indexFile); err != nil {
+		if err := index.Index(&db, indexFile); err != nil {
 			log.Fatalln("Error when indexing data:", err)
 		}
 	}
