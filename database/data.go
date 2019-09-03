@@ -9,6 +9,12 @@ package database
 
 import "tntindex/data"
 
+type Post struct {
+   Topic int
+   Post int
+   Title string
+}
+
 func (d *DB) IndexData(val *data.Data) error {
 	post := "INSERT INTO posts VALUES(?, ?, ?, ?, ?, ?)"
 	hash := "INSERT INTO hashes VALUES(?, ?,?, ?, ?)"
@@ -28,10 +34,18 @@ func (d *DB) IndexData(val *data.Data) error {
 	return nil
 }
 
-func (d *DB) SearchPost(val string) (error) {
-   return nil
+func (d *DB) SearchPost(val string) ([]Post, error) {
+   posts := []Post{}
+   query := "SELECT topic, post, title FROM posts WHERE title MATCH ? OR description MATCH ?"
+
+   err := d.conn.Select(&posts, query, val, val)
+   if err != nil {
+      return nil, err
+   }
+
+   return posts , nil
 }
 
-func SearchHash(topic, post int) (error) {
+func SearchHash(post Post) (error) {
    return nil
 }
