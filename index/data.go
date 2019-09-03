@@ -24,7 +24,7 @@ func (t *Time) UnmarshalCSV(data []byte) error {
 	return nil
 }
 
-type data struct {
+type Data struct {
 	Date     Time   `csv:"DATA"`
 	Hash     string `csv:"HASH"`
 	Topic    int    `csv:"TOPIC"`

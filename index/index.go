@@ -19,7 +19,7 @@ import (
 
 // Index index a file in database
 func Index(db *database.DB, filename *string) error {
-	var rows []data
+	var rows []Data
 
 	fd, err := os.Open(*filename)
 	if err != nil {
@@ -30,7 +30,7 @@ func Index(db *database.DB, filename *string) error {
 	reader := csv.NewReader(bufio.NewReader(fd))
 	dec, err := csvutil.NewDecoder(reader)
 	for {
-		d := data{}
+		d := Data{}
 
 		if err := dec.Decode(&d); err == io.EOF {
 			break
