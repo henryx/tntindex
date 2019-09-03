@@ -22,6 +22,11 @@ func main() {
 	cmdIndex := kingpin.Command("index", "Index a file")
 	indexFile := cmdIndex.Arg("filename", "Filename to index").Required().String()
 
+	// Search command
+	cmdSearch := kingpin.Command("search", "Search a torrent")
+
+	kingpin.HelpFlag.Short('h')
+
 	db.Open("tntindex.db")
 	defer db.Close()
 
@@ -30,5 +35,6 @@ func main() {
 		if err := index.Index(&db, indexFile); err != nil {
 			log.Fatalln("Error when indexing data:", err)
 		}
+	case cmdSearch.FullCommand():
 	}
 }
