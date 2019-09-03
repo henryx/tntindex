@@ -12,16 +12,14 @@ import (
 	"encoding/csv"
 	"io"
 	"os"
-	"tntindex/database"
 	"tntindex/data"
+	"tntindex/database"
 
 	"github.com/jszwec/csvutil"
 )
 
 // Index index a file in database
 func Index(db *database.DB, filename *string) error {
-	var rows []data.Data
-
 	fd, err := os.Open(*filename)
 	if err != nil {
 		return err
@@ -39,7 +37,9 @@ func Index(db *database.DB, filename *string) error {
 			return err
 		}
 
-		rows = append(rows, d)
+		if err := db.IndexData(&d); err != nil {
+			return err
+		}
 	}
 
 	return nil
