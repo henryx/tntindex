@@ -34,7 +34,10 @@ func (d *DB) createSchema() {
 
 	tx, _ := d.conn.Begin()
 	for _, table := range tables {
-		tx.Exec(table)
+		_, err := tx.Exec(table)
+		if err != nil {
+			log.Fatalln("Error creating tables schema:", err)
+		}
 	}
 	tx.Commit()
 }
