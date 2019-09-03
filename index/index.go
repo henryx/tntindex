@@ -13,13 +13,14 @@ import (
 	"io"
 	"os"
 	"tntindex/database"
+	"tntindex/data"
 
 	"github.com/jszwec/csvutil"
 )
 
 // Index index a file in database
 func Index(db *database.DB, filename *string) error {
-	var rows []Data
+	var rows []data.Data
 
 	fd, err := os.Open(*filename)
 	if err != nil {
@@ -30,7 +31,7 @@ func Index(db *database.DB, filename *string) error {
 	reader := csv.NewReader(bufio.NewReader(fd))
 	dec, err := csvutil.NewDecoder(reader)
 	for {
-		d := Data{}
+		d := data.Data{}
 
 		if err := dec.Decode(&d); err == io.EOF {
 			break

@@ -5,7 +5,7 @@
    License       GPL version 2 (see LICENSE for details)
 */
 
-package index
+package data
 
 import "time"
 
