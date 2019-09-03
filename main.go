@@ -38,5 +38,8 @@ func main() {
 			log.Fatalln("Error when indexing data:", err)
 		}
 	case cmdSearch.FullCommand():
+		if err := search.Search(&db, term); err != nil {
+			log.Fatalln("Error when searching data:", err)
+		}
 	}
 }
