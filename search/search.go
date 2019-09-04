@@ -7,13 +7,29 @@
 
 package search
 
-import "tntindex/database"
+import (
+	"fmt"
+	"tntindex/database"
+)
 
 func Search(db *database.DB, key *string) error {
-	// TODO: manage extracted data
-	_, err := db.SearchPost(*key)
+	type res struct {
+		Title string
+		Hash  string
+	}
+
+	posts, err := db.SearchPost(*key)
 	if err != nil {
 		return err
+	}
+
+	for _, post := range posts {
+		hash, err := db.SearchHash(post)
+		if err != nil {
+			return err
+		}
+
+		fmt.Printf("magnet:?xt=urn:btih:%s - %s\n", hash, post.Title)
 	}
 
 	return nil
