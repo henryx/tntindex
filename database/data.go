@@ -46,6 +46,15 @@ func (d *DB) SearchPost(val string) ([]Post, error) {
 	return posts, nil
 }
 
-func SearchHash(post Post) (error) {
-	return nil
+func (d *DB) SearchHash(val Post) (string, error) {
+	var res string
+
+	query := "SELECT hash FROM hashes WHERE topic = ? AND post = ?"
+
+	err := d.conn.QueryRow(query, val.Topic, val.Post).Scan(&res)
+	if err != nil {
+		return "", err
+	}
+
+	return res, nil
 }
