@@ -27,9 +27,9 @@ func (d *DB) checkSchema() bool {
 
 func (d *DB) createSchema() {
 	var tables = []string{
-		"CREATE TABLE categories(id, name)",
+		"CREATE TABLE categories(category, name, PRIMARY KEY(category))",
 		"CREATE VIRTUAL TABLE posts USING fts5(posted, topic, post, author, title, description)",
-		"CREATE TABLE hashes (topic, post, hash, size, category)",
+		"CREATE TABLE hashes (topic, post, hash, size, category, PRIMARY KEY(topic, post))",
 	}
 
 	var data = []string{
