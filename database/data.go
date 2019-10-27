@@ -13,6 +13,7 @@ type Post struct {
 	Topic int
 	Post  int
 	Title string
+	Size int
 }
 
 func (d *DB) IndexData(val *data.Data) error {
@@ -46,15 +47,16 @@ func (d *DB) SearchPost(val string) ([]Post, error) {
 	return posts, nil
 }
 
-func (d *DB) SearchHash(val Post) (string, error) {
+func (d *DB) SearchHash(val Post) (string, int, error) {
 	var res string
+	var size int
 
-	query := "SELECT hash FROM hashes WHERE topic = ? AND post = ?"
+	query := "SELECT hash, size FROM hashes WHERE topic = ? AND post = ?"
 
-	err := d.conn.QueryRow(query, val.Topic, val.Post).Scan(&res)
+	err := d.conn.QueryRow(query, val.Topic, val.Post).Scan(&res, &size)
 	if err != nil {
-		return "", err
+		return "", -1, err
 	}
 
-	return res, nil
+	return res, size, nil
 }

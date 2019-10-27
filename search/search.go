@@ -15,6 +15,7 @@ import (
 func Search(db *database.DB, key *string) error {
 	type res struct {
 		Title string
+		Size  int
 		Hash  string
 	}
 
@@ -24,12 +25,12 @@ func Search(db *database.DB, key *string) error {
 	}
 
 	for _, post := range posts {
-		hash, err := db.SearchHash(post)
+		hash, size, err := db.SearchHash(post)
 		if err != nil {
 			return err
 		}
 
-		fmt.Printf("magnet:?xt=urn:btih:%s - %s\n", hash, post.Title)
+		fmt.Printf("magnet:?xt=urn:btih:%s - %s - %d\n", hash, post.Title, size)
 	}
 
 	return nil
