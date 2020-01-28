@@ -29,10 +29,12 @@ func main() {
 
 	kingpin.HelpFlag.Short('h')
 
+	parsed := kingpin.Parse()
+
 	db.Open("tntindex.db")
 	defer db.Close()
 
-	switch kingpin.Parse() {
+	switch parsed {
 	case cmdIndex.FullCommand():
 		if err := index.Index(&db, indexFile); err != nil {
 			log.Fatalln("Error when indexing data:", err)
