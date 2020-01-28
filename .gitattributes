@@ -1,0 +1,7 @@
+* text=auto
+
+*.go  text
+*.c   text
+*.h   text
+*.mod text
+*.sum text
