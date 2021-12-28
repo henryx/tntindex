@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2019 Enrico Bianchi (enrico.bianchi@gmail.com)
+   Copyright (C) 2019-2022 Enrico Bianchi (enrico.bianchi@gmail.com)
    Project       tntindex
    Description   An TNTVillage dump indexer and search tool
    License       GPL version 2 (see LICENSE for details)
