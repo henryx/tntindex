@@ -1,3 +1,3 @@
 # TNTVillage index and Search tool
 
-Build with `go build --tags "json1 fts5"`
+Build with `go build -ldflags "-s -w" --tags "json1 fts5"`
