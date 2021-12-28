@@ -21,7 +21,7 @@ func main() {
 
 	// Index command
 	cmdIndex := kingpin.Command("index", "Index a file")
-	indexFile := cmdIndex.Arg("filename", "Filename to index").Required().String()
+	fileName := cmdIndex.Arg("filename", "Filename to index").Required().String()
 
 	// Search command
 	cmdSearch := kingpin.Command("search", "Search a torrent")
@@ -36,7 +36,7 @@ func main() {
 
 	switch parsed {
 	case cmdIndex.FullCommand():
-		if err := index.Index(&db, indexFile); err != nil {
+		if err := index.Index(&db, fileName); err != nil {
 			log.Fatalln("Error when indexing data:", err)
 		}
 	case cmdSearch.FullCommand():
